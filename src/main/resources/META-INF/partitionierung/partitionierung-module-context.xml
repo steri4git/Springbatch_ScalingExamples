@@ -22,25 +22,30 @@
 
 	<batch:step id="step1">
 		<batch:tasklet>
-			<batch:chunk reader="itemReader1"  writer="itemWriter1" commit-interval="20"/>
+			<batch:chunk reader="itemReader1" writer="itemWriter1"
+				commit-interval="20" />
 		</batch:tasklet>
 	</batch:step>
-	
-	<bean id="itemReader1" class="de.steri.springbatch.partitionierung.processing.Reader1" scope="step" >
-	<property name="min" value="#{stepExecutionContext[minValue]}"></property>
-	<property name="max" value="#{stepExecutionContext[maxValue]}"></property>
+
+	<bean id="itemReader1" class="de.steri.springbatch.partitionierung.processing.Reader1"
+		scope="step">
+		<property name="min" value="#{stepExecutionContext[minValue]}"></property>
+		<property name="max" value="#{stepExecutionContext[maxValue]}"></property>
 	</bean>
 
-	<bean id="itemWriter1" class="de.steri.springbatch.partitionierung.processing.Writer1" scope="step"  >
+	<bean id="itemWriter1" class="de.steri.springbatch.partitionierung.processing.Writer1"
+		scope="step">
 	</bean>
-	
-	<bean id="partitioner1" class="de.steri.springbatch.partitionierung.processing.ColumnRangePartitioner" scope="step">
+
+	<bean id="partitioner1"
+		class="de.steri.springbatch.partitionierung.processing.ColumnRangePartitioner"
+		scope="step">
 	</bean>
 
 	<bean id="taskExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="20" />
 		<property name="maxPoolSize" value="20" />
-		
+
 	</bean>
 </beans>
