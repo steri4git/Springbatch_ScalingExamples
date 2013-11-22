@@ -11,7 +11,7 @@
 
 	<context:property-placeholder location="classpath:batch.properties" />
 
-	<context:component-scan base-package="de.steri.springbatch.partitionierung.*" />
+	<context:component-scan base-package="de.steri.springbatch.parallelstep.*" />
 
 	<jdbc:initialize-database data-source="dataSource">
 		<jdbc:script location="${batch.schema.script}" />
@@ -20,6 +20,5 @@
 	<batch:job-repository id="jobRepository" />
 
 	<import
-		resource="classpath:/META-INF/partitionierung/partitionierung-module-context.xml" />
-
+		resource="classpath:/META-INF/parallelstep/parallelstep-module-context.xml" />
 </beans>

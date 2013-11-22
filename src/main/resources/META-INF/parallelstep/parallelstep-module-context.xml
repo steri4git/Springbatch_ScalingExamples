@@ -12,17 +12,31 @@
 		a typical batch application.
 	</description>
 	<batch:job id="job1">
-		<batch:step id="step1">
-			<batch:tasklet transaction-manager="transactionManager"
-				start-limit="100" task-executor="taskExecutor" throttle-limit="10">
-				<batch:chunk reader="itemReader1" writer="itemWriter1"
-					commit-interval="1" />
-			</batch:tasklet>
-		</batch:step>
+		<batch:split id="split1" task-executor="taskExecutor">
+			<batch:flow>
+				<batch:step id="step1">
+					<batch:tasklet transaction-manager="transactionManager"
+						start-limit="100">
+						<batch:chunk reader="reader1" writer="writer1"
+							commit-interval="1" />
+					</batch:tasklet>
+				</batch:step>
+			</batch:flow>
+			<batch:flow>
+				<batch:step id="step2">
+					<batch:tasklet transaction-manager="transactionManager"
+						start-limit="100">
+						<batch:chunk reader="reader2" writer="writer2"
+							commit-interval="2" />
+					</batch:tasklet>
+				</batch:step>
+			</batch:flow>
+		</batch:split>
 	</batch:job>
+
 	<bean id="taskExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-		<property name="corePoolSize" value="40" />
-		<property name="maxPoolSize" value="50" />
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="5" />
 	</bean>
 </beans>

@@ -1,4 +1,4 @@
-package de.steri.springbatch.threadedstep.processing;
+package de.steri.springbatch.parallelstep.processing;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
@@ -7,14 +7,10 @@ import org.springframework.stereotype.Component;
  * {@link ItemReader} with hard-coded input data.
  */
 
-@Component("itemReader1")
-public class Reader1 implements ItemReader<String> {
+@Component("reader2")
+public class Reader2 implements ItemReader<String> {
 	
-	int anzahl = 100;
-	//int zaehler =1;
-		
-	//private String[] input = {"Hello 1", "Hello 2","Hello 3","Hello 4","Hello 5","Hello 6",};
-	private String[] input= new String[anzahl];
+	private String[] input = {"Hello 11", "Hello 22","Hello 33","Hello 44","Hello 55","Hello 66",};
 	
 	private int index = 0;
 	
@@ -22,16 +18,9 @@ public class Reader1 implements ItemReader<String> {
 	 * Reads next record from input
 	 */
 	public String read() throws Exception {
-		
-		for (int i = 0; i < anzahl; i++) {
-			input[i]= new String("Hello "+ i);
-		}
-		
-		
-		System.out.println("READER 1 AUFFERUFEN");
+		System.out.println("READER 2 AUFFERUFEN");
 		if (index < input.length) {
 			System.out.println("Lese Thread: " + Thread.currentThread().getId() + " lese: " + input[index]);
-			//Thread.sleep(200);
 			return input[index++];
 		}
 		else {

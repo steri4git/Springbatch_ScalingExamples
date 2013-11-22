@@ -1,4 +1,4 @@
-package de.steri.springbatch.partitionierung.configuration;
+package de.steri.springbatch.parallelstep.configuration;
 
 import javax.sql.DataSource;
 
@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-public class PartitionierungConfiguration {
+public class ParallelStepConfiguration {
 
 	@Value("${batch.jdbc.driver}")
 	private String driverClassName;

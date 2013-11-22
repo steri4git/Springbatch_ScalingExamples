@@ -1,4 +1,4 @@
-package de.steri.springbatch.threadedstep.processing;
+package de.steri.springbatch.parallelstep.processing;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /**
  * Dummy {@link ItemWriter} which only logs data it receives.
  */
-@Component("itemWriter1")
+@Component("writer1")
 public class Writer1 implements ItemWriter<Object> {
 
 	private static final Log log = LogFactory.getLog(Writer1.class);
@@ -22,9 +22,8 @@ public class Writer1 implements ItemWriter<Object> {
 	public void write(List<? extends Object> data) throws Exception {
 		System.out.println("WRITER 1 AUFGERUFEN");
 		if (data != null){
-			System.out.println("Anzahl der Items: " + data.size());
+			System.out.println("Lese Thread: " + Thread.currentThread().getId() + " lese: " + data.toString());
 		}
-		System.out.println("Schreibe Thread: "+ Thread.currentThread().getId() + data);
-		Thread.sleep(500);
+		log.info(data);
 	}
 }
