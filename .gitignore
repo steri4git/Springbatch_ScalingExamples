@@ -1,1 +1,14 @@
+#################
+## Eclipse
+#################
+
+#Custom Steri
+target/*
+#.classpath
+#.project
+
+.metadata
+bin/
+tmp/
+.settings/
 /target
